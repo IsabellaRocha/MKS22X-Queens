@@ -11,6 +11,16 @@ public class QueenBoard {
   private boolean addQueen(int r, int c) {
     if (board[r][c] == 0) {
       board[r][c] = -1;
+      for (int idx = 0; idx < board.length; idx++) {
+        if (idx != c) {
+          board[r][idx] += 1;
+        }
+      }
+      for (int idx = 0; idx < board.length; idx++) {
+        if (idx != r) {
+          board[idx][c] += 1;
+        }
+      }
       return true;
     }
     return false;
