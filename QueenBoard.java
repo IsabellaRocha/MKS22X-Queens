@@ -27,6 +27,16 @@ public class QueenBoard {
   }
   private boolean removeQueen(int r, int c) {
     board[r][c] = 0;
+    for (int idx = 0; idx < board.length; idx++) {
+      if (idx != c) {
+        board[r][idx] -= 1;
+      }
+    }
+    for (int idx = 0; idx < board.length; idx++) {
+      if (idx != r) {
+        board[idx][c] -= 1;
+      }
+    }
     return true;
   }
 }
