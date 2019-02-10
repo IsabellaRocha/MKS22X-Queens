@@ -100,6 +100,31 @@ public class QueenBoard {
     }
     return false;
   }
+  private int countQueens() {
+    int count = 0;
+    for (int idx = 0; idx < board.length; idx++) {
+      for (int x = 0; x < board.length; x++) {
+        if (board[idx][x] == -1) {
+          count++;
+        }
+      }
+    }
+    return count;
+  }
+  public boolean solveHelp(int c) {
+    if (c >= board.length) {
+      return countQueens() == board.length;
+    }
+    else {
+      for (int r = 0; r < board.length; r++) {
+        if (addQueen(r, c)) {
+          return solveHelp(c + 1);
+        }
+        removeQueen(r, c);
+      }
+    }
+    return false;
+  }
   public String toString() {
     String output = "";
     for (int idx = 0; idx < board.length; idx++) {
