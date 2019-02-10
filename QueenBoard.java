@@ -129,16 +129,26 @@ public class QueenBoard {
     }
     return false;
   }
+  public boolean solve() {
+    for (int idx = 0; idx < board.length; idx++) {
+      for (int x = 0; x < board.length; x++) {
+        if (board[idx][x] != 0) {
+          throw new IllegalStateException("Not a clear board");
+        }
+      }
+    }
+    return solveHelp(0);
+  }
   public String toString() {
     String output = "";
     for (int idx = 0; idx < board.length; idx++) {
       output += "\n";
       for (int x = 0; x < board[idx].length; x++) {
         if (board[idx][x] != -1) {
-          output += board[idx][x] + "  ";
+          output += "_ ";
         }
         else {
-          output += board[idx][x] + " ";
+          output += "Q ";
         }
       }
     }
@@ -146,11 +156,14 @@ public class QueenBoard {
   }
   public static void main(String[] args) {
     QueenBoard trial = new QueenBoard(8);
-  //  trial.addQueen(0, 0);
+    QueenBoard q = new QueenBoard(3);
+    trial.addQueen(0, 0);
   //  trial.addQueen(2, 2);
   //  trial.addQueen(5, 7);
   //  trial.removeQueen(5, 7);
-    trial.solveHelp(0);
+    trial.solve();
     System.out.println(trial);
+    q.solve();
+    System.out.println(q);
   }
 }
