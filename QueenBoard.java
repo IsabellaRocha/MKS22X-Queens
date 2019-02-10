@@ -160,6 +160,9 @@ public class QueenBoard {
     return solHelp(0);
   }
   public int solHelp(int c) {
+    if (c == board.length) {
+      return 1;
+    }
     int count = 0;
     for (int r = 0; r < board.length; r++) {
       if (addQueen(r, c)) {
