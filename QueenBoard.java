@@ -8,7 +8,7 @@ public class QueenBoard {
       }
     }
   }
-  private boolean addQueen2(int r, int c) {
+  private boolean addQueen(int r, int c) {
     if (board[r][c] != 0){
   		return false;
   	}
@@ -47,58 +47,55 @@ public class QueenBoard {
         catch (Exception e){}
   			try{
   				if (board[r - idx][c - idx] != -1){
-  					board[r - idx][c - idx]++;
+  					board[r - idx][c - idx] += 1;
   				}
   			}
         catch (Exception e){}
   		}
-  		return true;
   	}
-  }
-  private boolean addQueen(int r, int c) {
-    if (board[r][c] == 0) {
-      board[r][c] = -1;
-      for (int idx = 0; idx < board.length; idx++) {
-        if (idx != c) {
-          board[r][idx] += 1;
-        }
-      }
-      for (int idx = 0; idx < board.length; idx++) {
-        if (idx != r) {
-          board[idx][c] += 1;
-        }
-      }
-      for (int idx = 0; idx < board.length; idx++) {
-        for (int x = 0; x < board[idx].length; x++) {
-          if (r - idx == c - x && idx != r && x != c) {
-            board[idx][x] += 1;
-          }
-        }
-      }
-      return true;
-    }
-    return false;
+    return true;
   }
   private boolean removeQueen(int r, int c) {
     if (board[r][c] == -1) {
       board[r][c] = 0;
-      for (int idx = 0; idx < board.length; idx++) {
-        if (idx != c) {
-          board[r][idx] -= 1;
+      for(int idx = 0; idx < board.length; idx++){
+        try {
+          if (board[idx][c] != 0){
+    				board[idx][c] -= 1;
+    			}
+    		}
+        catch (Exception e) {}
+        try {
+          if (board[r][idx] != 0){
+    				board[r][idx] -= 1;
+    			}
         }
-      }
-      for (int idx = 0; idx < board.length; idx++) {
-        if (idx != r) {
-          board[idx][c] -= 1;
-        }
-      }
-      for (int idx = 0; idx < board.length; idx++) {
-        for (int x = 0; x < board[idx].length; x++) {
-          if (r - idx == c - x && idx != r && x != c) {
-            board[idx][x] -= 1;
-          }
-        }
-      }
+        catch (Exception e) {}
+  			try {
+  				if (board[r + idx][c + idx] != 0){
+  					board[r + idx][c + idx] -= 1;
+  				}
+  			}
+        catch (Exception e){}
+  			try{
+  				if (board[r - idx][c + idx] != 0){
+  					board[r - idx][c + idx] -= 1;
+  				}
+  			}
+        catch (Exception e){}
+  			try{
+  				if (board[r + idx][c - idx] != 0){
+  					board[r + idx][c - idx] -= 1;
+  				}
+  			}
+        catch (Exception e){}
+  			try{
+  				if (board[r - idx][c - idx] != 0){
+  					board[r - idx][c - idx] -= 1;
+  				}
+  			}
+        catch (Exception e){}
+  		}
       return true;
     }
     return false;
