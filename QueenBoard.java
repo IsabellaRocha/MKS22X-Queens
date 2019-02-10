@@ -118,9 +118,13 @@ public class QueenBoard {
     else {
       for (int r = 0; r < board.length; r++) {
         if (addQueen(r, c)) {
-          return solveHelp(c + 1);
+          if (solveHelp(c + 1)) {
+            return true;
+          }
+          else {
+            removeQueen(r, c);
+          }
         }
-        removeQueen(r, c);
       }
     }
     return false;
@@ -142,10 +146,11 @@ public class QueenBoard {
   }
   public static void main(String[] args) {
     QueenBoard trial = new QueenBoard(8);
-    trial.addQueen(0, 0);
-    trial.addQueen(2, 2);
-    trial.addQueen(5, 7);
-    trial.removeQueen(5, 7);
+  //  trial.addQueen(0, 0);
+  //  trial.addQueen(2, 2);
+  //  trial.addQueen(5, 7);
+  //  trial.removeQueen(5, 7);
+    trial.solveHelp(0);
     System.out.println(trial);
   }
 }
