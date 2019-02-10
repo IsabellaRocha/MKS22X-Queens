@@ -8,6 +8,53 @@ public class QueenBoard {
       }
     }
   }
+  private boolean addQueen2(int r, int c) {
+    if (board[r][c] != 0){
+  		return false;
+  	}
+  	else {
+  		board[r][c] = -1;
+  		for(int idx = 0; idx < board.length; idx++){
+        try {
+          if (board[idx][c] != -1){
+    				board[idx][c] += 1;
+    			}
+    		}
+        catch (Exception e) {}
+        try {
+          if (board[r][idx] != -1){
+    				board[r][idx] += 1;
+    			}
+        }
+        catch (Exception e) {}
+  			try {
+  				if (board[r + idx][c + idx] != -1){
+  					board[r + idx][c + idx] += 1;
+  				}
+  			}
+        catch (Exception e){}
+  			try{
+  				if (board[r - idx][c + idx] != -1){
+  					board[r - idx][c + idx] += 1;
+  				}
+  			}
+        catch (Exception e){}
+  			try{
+  				if (board[r + idx][c - idx] != -1){
+  					board[r + idx][c - idx] += 1;
+  				}
+  			}
+        catch (Exception e){}
+  			try{
+  				if (board[r - idx][c - idx] != -1){
+  					board[r - idx][c - idx]++;
+  				}
+  			}
+        catch (Exception e){}
+  		}
+  		return true;
+  	}
+  }
   private boolean addQueen(int r, int c) {
     if (board[r][c] == 0) {
       board[r][c] = -1;
