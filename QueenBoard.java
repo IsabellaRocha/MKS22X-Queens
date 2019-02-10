@@ -139,6 +139,25 @@ public class QueenBoard {
     }
     return solveHelp(0);
   }
+  public int countSolutions() {
+    for (int idx = 0; idx < board.length; idx++) {
+      for (int x = 0; x < board.length; x++) {
+        if (board[idx][x] != 0) {
+          throw new IllegalStateException("Not a clear board");
+        }
+      }
+    }
+    int count = 0;
+    for (int idx = 0; idx < board.length; idx++) {
+      if (solveHelp(0)) {
+        count++;
+      }
+      else {
+        removeQueen(idx, 0);
+      }
+    }
+    return count;
+  }
   public String toString() {
     String output = "";
     for (int idx = 0; idx < board.length; idx++) {
@@ -163,7 +182,9 @@ public class QueenBoard {
   //  trial.removeQueen(5, 7);
     trial.solve();
     System.out.println(trial);
+    System.out.println(trial.countSolutions());
     q.solve();
     System.out.println(q);
+    System.out.println(trial.countSolutions());
   }
 }
