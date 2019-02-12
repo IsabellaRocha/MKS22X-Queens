@@ -139,6 +139,31 @@ public class QueenBoard {
     }
     return solveHelp(0);
   }
+  public boolean solveAnimate() {
+    return solveHelpAnimate(0);
+  }
+  public boolean solveHelpAnimate(int c) {
+    if (c >= board.length) {
+      return countQueens() == board.length;
+    }
+    else {
+      for (int r = 0; r < board.length; r++) {
+        if (addQueen(r, c)) {
+          System.out.println(Text.CLEAR_SCREEN);
+          System.out.println(Text.go(1,1));
+          System.out.println(this);
+          Text.wait(500);
+          if (solveHelpAnimate(c + 1)) {
+            return true;
+          }
+          else {
+            removeQueen(r, c);
+          }
+        }
+      }
+    }
+    return false;
+  }
   public int countSolutions() {
     for (int idx = 0; idx < board.length; idx++) {
       for (int x = 0; x < board.length; x++) {
@@ -183,25 +208,26 @@ public class QueenBoard {
     QueenBoard a = new QueenBoard(10);
     QueenBoard b = new QueenBoard(9);
     QueenBoard c = new QueenBoard(5);
-    QueenBoard d = new QueenBoard(4);
+    QueenBoard d = new QueenBoard(14);
   //  trial.addQueen(0, 0);
   //  trial.addQueen(2, 2);
   //  trial.addQueen(5, 7);
   //  trial.removeQueen(5, 7);
 //    trial.solve();
 //    System.out.println(trial);
-    System.out.println(trial.countSolutions());
+//    System.out.println(trial.countSolutions());
 //    q.solve();
 //    System.out.println(q);
-    System.out.println(q.countSolutions());
-    System.out.println(a.countSolutions());
-    System.out.println(b.countSolutions());
-    System.out.println(c.countSolutions());
-    c.solve();
-    System.out.println(c);
-    System.out.println(d.countSolutions());
-    d.solve();
-    System.out.println(d);
+//    System.out.println(q.countSolutions());
+//    System.out.println(a.countSolutions());
+//    System.out.println(b.countSolutions());
+//    System.out.println(c.countSolutions());
+//    c.solve();
+//    System.out.println(c);
+//    System.out.println(d.countSolutions());
+//    d.solve();
+//    System.out.println(d);
+    trial.solveAnimate();
     System.out.println(trial);
   }
 }
